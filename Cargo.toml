@@ -1,0 +1,44 @@
+[package]
+name = "AoC2025-Rust"
+version = "1.0.0"
+authors = ["Massimo Pavoni"]
+repository = "https://github.com/massimopavoni/AoC2025-Rust"
+license-file = "LICENSE"
+edition = "2024"
+rust-version = "1.91"
+
+[dependencies]
+atoi = "2.0.*"
+derive_more = { version = "2.0.*", default-features = false, features = [
+    "add",
+    "add_assign",
+    "display",
+] }
+grid = "1.0.*"
+include_dir = "0.7.*"
+itertools = "0.14.*"
+nalgebra = { version = "0.34.*", default-features = false, features = [
+    "matrixmultiply",
+] }
+num-modular = { version = "0.6.*", default-features = false, features = [
+    "num-traits",
+] }
+pathfinding = "4.14.*"
+rayon = "1.11.*"
+regex = "1.12.*"
+rustc-hash = "2.1.*"
+
+[lints.clippy]
+nursery = "warn"
+pedantic = "warn"
+unwrap_used = "warn"
+
+[profile.dev]
+overflow-checks = false
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
+strip = true
+# debug = true
