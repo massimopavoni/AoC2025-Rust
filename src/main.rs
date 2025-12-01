@@ -6,6 +6,10 @@ use rustc_hash::FxHashMap;
 
 mod random_utils;
 
+mod secret_entrance;
+
+use secret_entrance::{door_password, door_password_click_method};
+
 // ------------------------------------------------------------------------------------------------
 // Globals
 
@@ -88,4 +92,11 @@ macro_rules! pretty_solution_2 {
 #[allow(clippy::too_many_lines)]
 pub fn main() {
     println!("AoC 2025 - Rust\n");
+
+    pretty_solution_2!(
+        1,
+        "SecretEntrance",
+        door_password,
+        door_password_click_method
+    );
 }
