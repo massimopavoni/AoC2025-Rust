@@ -6,8 +6,12 @@ use rustc_hash::FxHashMap;
 
 mod random_utils;
 
+mod gift_shop;
+mod lobby;
 mod secret_entrance;
 
+use gift_shop::{invalid_ids_sum, more_invalid_ids_sum};
+use lobby::{total_joltage_2_batteries, total_joltage_12_batteries};
 use secret_entrance::{door_password, door_password_click_method};
 
 // ------------------------------------------------------------------------------------------------
@@ -98,5 +102,14 @@ pub fn main() {
         "SecretEntrance",
         door_password,
         door_password_click_method
+    );
+
+    pretty_solution_2!(2, "GiftShop", invalid_ids_sum, more_invalid_ids_sum);
+
+    pretty_solution_2!(
+        3,
+        "Lobby",
+        total_joltage_2_batteries,
+        total_joltage_12_batteries
     );
 }
