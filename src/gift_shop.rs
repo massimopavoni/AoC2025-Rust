@@ -51,19 +51,19 @@ fn sum_product_ids(input: &str, more_repeats: bool) -> u64 {
             let mut sum = 0;
             seen.clear();
 
-            for digits in digits_len(start)..=digits_len(end) {
-                // Entire digit class outside range
-                if POWERS_OF_10[digits] - 1 < start || POWERS_OF_10[digits - 1] > end {
+            for digits_len in digits_len(start)..=digits_len(end) {
+                // Entire digits class outside range
+                if POWERS_OF_10[digits_len] - 1 < start || POWERS_OF_10[digits_len - 1] > end {
                     continue;
                 }
 
-                for sequence_len in 1..digits {
+                for sequence_len in 1..digits_len {
                     // Must divide evenly
-                    if digits % sequence_len != 0 {
+                    if digits_len % sequence_len != 0 {
                         continue;
                     }
 
-                    let repetitions = digits / sequence_len;
+                    let repetitions = digits_len / sequence_len;
 
                     if !more_repeats && repetitions != 2 || repetitions < 2 {
                         continue;
