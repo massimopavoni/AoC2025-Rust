@@ -102,14 +102,14 @@ impl Pos {
     }
 
     pub const fn in_bounds(&self, bounds: (Self, Self)) -> bool {
-        self.x >= bounds.0.x && self.x <= bounds.1.x && self.y >= bounds.0.y && self.y <= bounds.1.y
+        bounds.0.x <= self.x && self.x <= bounds.1.x && bounds.0.y <= self.y && self.y <= bounds.1.y
     }
 
     pub const fn manhattan_distance(&self, other: Self) -> usize {
         self.x.abs_diff(other.x) + self.y.abs_diff(other.y)
     }
 
-    pub fn neighbors(&self) -> impl Iterator<Item = Self> + use<> {
+    pub fn adjacent(&self) -> impl Iterator<Item = Self> + use<> {
         [
             Self::new(self.x + 1, self.y),
             Self::new(self.x, self.y + 1),
@@ -117,6 +117,20 @@ impl Pos {
             Self::new(self.x, self.y - 1),
         ]
         .into_iter()
+    }
+
+    pub fn corners(&self) -> impl Iterator<Item = Self> + use<> {
+        [
+            Self::new(self.x + 1, self.y + 1),
+            Self::new(self.x - 1, self.y + 1),
+            Self::new(self.x - 1, self.y - 1),
+            Self::new(self.x + 1, self.y - 1),
+        ]
+        .into_iter()
+    }
+
+    pub fn neighbors(&self) -> impl Iterator<Item = Self> + use<> {
+        self.adjacent().chain(self.corners())
     }
 }
 
@@ -143,9 +157,9 @@ impl From<Pos> for (usize, usize) {
 pub trait GridPosGet<V> {
     fn pos_get(&self, pos: Pos) -> Option<&V>;
 
-    fn pos_get_expect(&self, pos: Pos) -> &V;
+    fn pos_index(&self, pos: Pos) -> &V;
 
-    fn pos_get_mut_expect(&mut self, pos: Pos) -> &mut V;
+    fn pos_index_mut(&mut self, pos: Pos) -> &mut V;
 }
 
 impl<V> GridPosGet<V> for Grid<V> {
@@ -153,11 +167,13 @@ impl<V> GridPosGet<V> for Grid<V> {
         self.get(pos.x, pos.y)
     }
 
-    fn pos_get_expect(&self, pos: Pos) -> &V {
-        self.get(pos.x, pos.y).expect("Expected grid value")
+    fn pos_index(&self, pos: Pos) -> &V {
+        #[allow(clippy::cast_sign_loss)]
+        &self[(pos.x as usize, pos.y as usize)]
     }
 
-    fn pos_get_mut_expect(&mut self, pos: Pos) -> &mut V {
-        self.get_mut(pos.x, pos.y).expect("Expected grid value")
+    fn pos_index_mut(&mut self, pos: Pos) -> &mut V {
+        #[allow(clippy::cast_sign_loss)]
+        &mut self[(pos.x as usize, pos.y as usize)]
     }
 }

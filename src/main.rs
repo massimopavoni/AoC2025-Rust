@@ -8,10 +8,12 @@ mod random_utils;
 
 mod gift_shop;
 mod lobby;
+mod printing_department;
 mod secret_entrance;
 
 use gift_shop::{invalid_ids_sum, more_invalid_ids_sum};
 use lobby::{total_joltage_2_batteries, total_joltage_12_batteries};
+use printing_department::{accessible_paper_rolls, all_accessible_paper_rolls};
 use secret_entrance::{door_password, door_password_click_method};
 
 // ------------------------------------------------------------------------------------------------
@@ -111,5 +113,12 @@ pub fn main() {
         "Lobby",
         total_joltage_2_batteries,
         total_joltage_12_batteries
+    );
+
+    pretty_solution_2!(
+        4,
+        "PrintingDepartment",
+        accessible_paper_rolls,
+        all_accessible_paper_rolls
     );
 }

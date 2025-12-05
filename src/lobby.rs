@@ -4,12 +4,10 @@ use lexical_core::FromLexical;
 // Exports
 
 pub fn total_joltage_2_batteries(input: &str) -> u16 {
-    // Find biggest joltage sum with 2 batteries per bank
     total_joltage::<2, u16>(input)
 }
 
 pub fn total_joltage_12_batteries(input: &str) -> u64 {
-    // Find biggest joltage sum with 12 batteries per bank
     total_joltage::<12, u64>(input)
 }
 
@@ -24,6 +22,7 @@ where
     let mut stack = [0; BATTERIES_COUNT];
     let mut size;
 
+    // Find biggest joltage sum by using digits stack
     for bank in input.lines() {
         size = 0;
 
