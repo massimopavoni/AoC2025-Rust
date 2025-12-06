@@ -6,15 +6,19 @@ use rustc_hash::FxHashMap;
 
 mod random_utils;
 
+mod cafeteria;
 mod gift_shop;
 mod lobby;
 mod printing_department;
 mod secret_entrance;
+mod trash_compactor;
 
+use cafeteria::{all_possible_fresh_ingredients, available_fresh_ingredients};
 use gift_shop::{invalid_ids_sum, more_invalid_ids_sum};
 use lobby::{total_joltage_2_batteries, total_joltage_12_batteries};
 use printing_department::{accessible_paper_rolls, all_accessible_paper_rolls};
 use secret_entrance::{door_password, door_password_click_method};
+use trash_compactor::{problem_answers_sum, transposed_problem_answers_sum};
 
 // ------------------------------------------------------------------------------------------------
 // Globals
@@ -120,5 +124,19 @@ pub fn main() {
         "PrintingDepartment",
         accessible_paper_rolls,
         all_accessible_paper_rolls
+    );
+
+    pretty_solution_2!(
+        5,
+        "Cafeteria",
+        available_fresh_ingredients,
+        all_possible_fresh_ingredients
+    );
+
+    pretty_solution_2!(
+        6,
+        "TrashCompactor",
+        problem_answers_sum,
+        transposed_problem_answers_sum
     );
 }

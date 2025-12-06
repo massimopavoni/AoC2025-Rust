@@ -13,7 +13,7 @@ use crate::random_utils::{
 pub fn accessible_paper_rolls(input: &str) -> u16 {
     let mut grid = bytes_grid(input);
 
-    // Count just easily accessible paper rolls only
+    // Count easily accessible paper rolls only
     easily_accessible_paper_rolls(0, &mut grid, |accessible, _, _| *accessible += 1)
 }
 
