@@ -8,6 +8,7 @@ mod random_utils;
 
 mod cafeteria;
 mod gift_shop;
+mod laboratories;
 mod lobby;
 mod printing_department;
 mod secret_entrance;
@@ -15,6 +16,7 @@ mod trash_compactor;
 
 use cafeteria::{all_possible_fresh_ingredients, available_fresh_ingredients};
 use gift_shop::{invalid_ids_sum, more_invalid_ids_sum};
+use laboratories::{tachyon_beam_splits, tachyon_particle_timelines};
 use lobby::{total_joltage_2_batteries, total_joltage_12_batteries};
 use printing_department::{accessible_paper_rolls, all_accessible_paper_rolls};
 use secret_entrance::{door_password, door_password_click_method};
@@ -138,5 +140,12 @@ pub fn main() {
         "TrashCompactor",
         problem_answers_sum,
         transposed_problem_answers_sum
+    );
+
+    pretty_solution_2!(
+        7,
+        "Laboratories",
+        tachyon_beam_splits,
+        tachyon_particle_timelines
     );
 }
