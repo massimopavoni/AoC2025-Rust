@@ -1,24 +1,21 @@
-use lexical_core::FromLexical;
+use crate::random_utils::parse_number_bytes;
 
 // ------------------------------------------------------------------------------------------------
 // Exports
 
-pub fn total_joltage_2_batteries(input: &str) -> u16 {
-    total_joltage::<2, u16>(input)
+pub fn total_joltage_2_batteries(input: &str) -> u64 {
+    total_joltage::<2>(input)
 }
 
 pub fn total_joltage_12_batteries(input: &str) -> u64 {
-    total_joltage::<12, u64>(input)
+    total_joltage::<12>(input)
 }
 
 // ------------------------------------------------------------------------------------------------
 // Functions
 
-fn total_joltage<const BATTERIES_COUNT: usize, N>(input: &str) -> N
-where
-    N: FromLexical,
-{
-    let mut total = N::default();
+fn total_joltage<const BATTERIES_COUNT: usize>(input: &str) -> u64 {
+    let mut total = 0;
     let mut stack = [0; BATTERIES_COUNT];
     let mut size;
 
@@ -37,7 +34,7 @@ where
             }
         }
 
-        total += lexical_core::parse(&stack).expect("Expected valid digits");
+        total += parse_number_bytes::<u64>(&stack);
     }
 
     total
