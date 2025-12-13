@@ -8,6 +8,7 @@ use crate::random_utils::parse_numbers;
 // Exports
 
 pub fn lights_fewest_button_presses(input: &str) -> usize {
+    // Try out all possible powerset members choosing first one
     lights_buttons_and_joltages(input)
         .map(|(target, buttons, _)| {
             for set in buttons.iter().powerset().skip(1) {
@@ -30,6 +31,7 @@ pub fn lights_fewest_button_presses(input: &str) -> usize {
 }
 
 pub fn joltage_fewest_button_presses(input: &str) -> f64 {
+    // Model each joltage question into an Integer Linear Programming problem
     lights_buttons_and_joltages(input)
         .par_bridge()
         .map(|(_, buttons, target)| {
