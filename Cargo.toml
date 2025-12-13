@@ -5,7 +5,7 @@ authors = ["Massimo Pavoni"]
 repository = "https://github.com/massimopavoni/AoC2025-Rust"
 license-file = "LICENSE"
 edition = "2024"
-rust-version = "1.91"
+rust-version = "1.92"
 
 [dependencies]
 derive_more = { version = "2.1.*", default-features = false, features = [
@@ -19,15 +19,9 @@ itertools = "0.14.*"
 lexical-core = { version = "1.0.*", default-features = false, features = [
   "parse-integers",
 ] }
-nalgebra = { version = "0.34.*", default-features = false, features = [
-  "matrixmultiply",
-] }
-num-modular = { version = "0.6.*", default-features = false, features = [
-  "num-traits",
-] }
+microlp = "0.2.11"
 pathfinding = "4.14.*"
 rayon = "1.11.*"
-regex = "1.12.*"
 rustc-hash = "2.1.*"
 
 [lints.clippy]

@@ -7,22 +7,28 @@ use rustc_hash::FxHashMap;
 mod random_utils;
 
 mod cafeteria;
+mod christmas_tree_farm;
+mod factory;
 mod gift_shop;
 mod laboratories;
 mod lobby;
 mod movie_theater;
 mod playground;
 mod printing_department;
+mod reactor;
 mod secret_entrance;
 mod trash_compactor;
 
 use cafeteria::{all_possible_fresh_ingredients, available_fresh_ingredients};
+use christmas_tree_farm::tree_regions_that_fit_all_presents;
+use factory::{joltage_fewest_button_presses, lights_fewest_button_presses};
 use gift_shop::{invalid_ids_sum, more_invalid_ids_sum};
 use laboratories::{tachyon_beam_splits, tachyon_particle_timelines};
 use lobby::{total_joltage_2_batteries, total_joltage_12_batteries};
 use movie_theater::{largest_rectangle_area, largest_red_green_rectangle_area};
 use playground::{largest_3_circuits, minimum_spanning_circuit_last_cable};
 use printing_department::{accessible_paper_rolls, all_accessible_paper_rolls};
+use reactor::{svr_to_out_through_dac_fft_paths, you_to_out_paths};
 use secret_entrance::{door_password, door_password_click_method};
 use trash_compactor::{problem_answers_sum, transposed_problem_answers_sum};
 
@@ -166,4 +172,20 @@ pub fn main() {
         largest_rectangle_area,
         largest_red_green_rectangle_area
     );
+
+    pretty_solution_2!(
+        10,
+        "Factory",
+        lights_fewest_button_presses,
+        joltage_fewest_button_presses
+    );
+
+    pretty_solution_2!(
+        11,
+        "Reactor",
+        you_to_out_paths,
+        svr_to_out_through_dac_fft_paths
+    );
+
+    pretty_solution_2!(12, "ChristmasTreeFarm", tree_regions_that_fit_all_presents);
 }
